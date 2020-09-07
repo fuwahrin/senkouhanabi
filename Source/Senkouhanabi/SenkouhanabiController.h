@@ -4,14 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "WG_PlayUI.h"
-#include "WG_Title.h"
+//#include "WG_PlayUI.h"
+//#include "WG_Title.h"
 
 #include "SenkouhanabiController.generated.h"
 
 //クラスの前方宣言
 class AMyGameMode;
-
+class UWG_PlayUI;
+class UWG_Title;
 /**
  * 
  */
@@ -19,6 +20,22 @@ UCLASS()
 class SENKOUHANABI_API ASenkouhanabiController : public APlayerController
 {
 	GENERATED_BODY()
+
+protected:
+	//コンストラクタ
+	ASenkouhanabiController();
+	
+	virtual void BeginPlay() override;
+
+	//入力イベント
+	virtual void SetupInputComponent() override;
+	//入力した文字の比較と描画を行うメソッド
+	UFUNCTION()
+		void SetInputKey(FKey key);
+
+	//入力した文字とガイドの文字とを比較するメソッド
+	UFUNCTION()
+		void CheckInputKey(FString Input);
 
 protected:
 
@@ -30,7 +47,7 @@ protected:
 
 	//花火が出現したか判断するboolean変数
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "SenkouhanabiController")
-	bool _IsFireStart;
+	bool _bIsFireStart;
 
 	//入力文字
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "SenkouhanabiController")
@@ -38,7 +55,7 @@ protected:
 
 	//花火が落下したかの変数
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "SenkouhanabiController")
-	bool _isDrop;
+	bool _bisDrop;
 
 	//入力ミスしたのカウント
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "SenkouhanabiController")

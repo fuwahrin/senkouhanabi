@@ -42,7 +42,7 @@ class SENKOUHANABI_API AMyGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
-protected:
+public:
 
 	//ïœêî
 
