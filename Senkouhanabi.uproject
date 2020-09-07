@@ -7,7 +7,11 @@
 		{
 			"Name": "Senkouhanabi",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine",
+				"UMGEditor"
+			]
 		}
 	],
 	"Plugins": [
