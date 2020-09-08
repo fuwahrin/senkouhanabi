@@ -4,17 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "enum.h"
 #include "MyGameMode.generated.h"
 
-
-//色選択の列挙
-UENUM(BlueprintType)
-enum class EColor : uint8
-{
-	RED,
-	GREEN,
-	BLUE,
-};
 
 USTRUCT(BlueprintType)
 struct FInputKey
@@ -90,8 +82,9 @@ protected:
 	UFUNCTION()
 	void SetSelectKey();
 	
+public:
 	UFUNCTION()
 	//ガイド構造体配列の先頭を削除する。
 	void InputKeyArrayDelete();
-	
+
 };

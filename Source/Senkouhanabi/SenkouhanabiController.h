@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 //#include "WG_PlayUI.h"
 //#include "WG_Title.h"
+#include "enum.h"
 
 #include "SenkouhanabiController.generated.h"
 
@@ -36,6 +37,12 @@ protected:
 	//入力した文字とガイドの文字とを比較するメソッド
 	UFUNCTION()
 		void CheckInputKey(FString Input);
+
+	UFUNCTION()
+		void ScoreStateCounter(bool IsSuccess, EColor type);
+
+	UFUNCTION()
+		void GameEndCheck();
 
 protected:
 
@@ -86,12 +93,17 @@ protected:
 
 	//最大コンボ数
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "SenkouhanabiController")
-	int MaxCommbo;
+	int _MaxCommbo;
 
 
-	//TODO　WGPlayUI変数を追加
+	//PlayUIWidgetのクラス参照用
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "SenkouhanabiController")
-	UWG_PlayUI* PlayUI;
+	//UWG_PlayUI* PlayUI;
+	TSubclassOf<UUserWidget> _PlayUIClass;
+
+	//変数格納用
+	UUserWidget* _PlayUI;
+
 
 	//TODO InputKeyDrawer
 
@@ -103,8 +115,14 @@ protected:
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "SenkouhanabiController")
 	int Score;
 
+	//TitleWidgetのクラス参照用
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "SenkouhanabiController")
-	UWG_Title* TitleUi;
+	//UWG_Title* TitleUi;
+	TSubclassOf<UUserWidget> _TitleUIClass;
+
+	//変数に格納用
+	UUserWidget* _TitleUI;
+	
 	
 	//スタートボタンを押したか？
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "SenkouhanabiController")
@@ -130,4 +148,7 @@ protected:
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "SenkouhanabiController")
 	FVector _firstLocation;
 
+	//失敗数の上限
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "SenkouhanabiController")
+	int _GameEndCounter;
 };
